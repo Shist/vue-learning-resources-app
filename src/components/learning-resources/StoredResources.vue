@@ -2,12 +2,14 @@
   <ul>
     <li v-for="resource in resources" :key="resource.id">
       <LearningResource
+        :id="resource.id"
         :title="resource.title"
         :description="resource.description"
         :link="resource.link"
       />
     </li>
   </ul>
+  <p v-if="!resources.length">No stored resources. Please add some.</p>
 </template>
 
 <script>
@@ -34,5 +36,10 @@ ul {
   padding: 0;
   margin: auto;
   max-width: 40rem;
+}
+
+p {
+  text-align: center;
+  font-size: 1.5rem;
 }
 </style>

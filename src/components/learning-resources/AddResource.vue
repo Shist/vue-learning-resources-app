@@ -39,7 +39,12 @@
 
 <script>
 export default {
-  inject: ['addResource'],
+  inject: {
+    addResource: {
+      type: Function,
+      required: true,
+    },
+  },
 
   data() {
     return {

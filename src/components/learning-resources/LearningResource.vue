@@ -2,7 +2,7 @@
   <BaseCard>
     <header>
       <h2>{{ title }}</h2>
-      <BaseButton mode="flat">Delete</BaseButton>
+      <BaseButton mode="flat" @click="removeResource(id)">Delete</BaseButton>
     </header>
     <p>{{ description }}</p>
     <nav>
@@ -14,6 +14,10 @@
 <script>
 export default {
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     title: {
       type: String,
       required: true,
@@ -24,6 +28,13 @@ export default {
     },
     link: {
       type: String,
+      required: true,
+    },
+  },
+
+  inject: {
+    removeResource: {
+      type: Function,
       required: true,
     },
   },
