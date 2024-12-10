@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <teleport to="body">
     <div class="backdrop" @click.self="closeDialog"></div>
     <dialog open>
       <header>
@@ -16,7 +16,7 @@
         </slot>
       </menu>
     </dialog>
-  </div>
+  </teleport>
 </template>
 
 <script>

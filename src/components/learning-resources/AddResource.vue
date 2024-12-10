@@ -23,7 +23,7 @@
       </div>
     </form>
   </BaseCard>
-  <BaseDialog v-show="!isInputValid" :title="dialogTitle" @close="confirmError">
+  <BaseDialog v-if="!isInputValid" :title="dialogTitle" @close="confirmError">
     <template #default>
       <p>{{ dialogMessage }}</p>
       <p>
