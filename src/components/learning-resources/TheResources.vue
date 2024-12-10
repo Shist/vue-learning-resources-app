@@ -13,7 +13,9 @@
       Add Resource
     </BaseButton>
   </BaseCard>
-  <component :is="selectedTab" />
+  <keep-alive>
+    <component :is="selectedTab" />
+  </keep-alive>
 </template>
 
 <script>
@@ -60,11 +62,21 @@ export default {
     setSelectedTab(tab) {
       this.selectedTab = tab;
     },
+
+    addResource(resourceObj) {
+      this.storedResources.unshift({
+        id: new Date().toISOString(),
+        ...resourceObj,
+      });
+
+      this.selectedTab = 'stored-resources';
+    },
   },
 
   provide() {
     return {
       resources: this.storedResources,
+      addResource: this.addResource,
     };
   },
 };
