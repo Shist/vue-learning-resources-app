@@ -1,25 +1,18 @@
 <template>
-  <ul>
-    <li v-for="resource in storesResources" :key="resource.id">
-      <ResourceCard
-        :title="resource.title"
-        :description="resource.description"
-        :link="resource.link"
-      />
-    </li>
-  </ul>
+  <StoredResources :resources="storedResources" />
 </template>
 
 <script>
-import ResourceCard from '@/components/learning-resources/ResourceCard.vue';
+import StoredResources from '@/components/learning-resources/StoredResources.vue';
 
 export default {
   components: {
-    ResourceCard,
+    StoredResources,
   },
+
   data() {
     return {
-      storesResources: [
+      storedResources: [
         {
           id: 'official-guide',
           title: 'Official Guide',
@@ -37,3 +30,19 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
