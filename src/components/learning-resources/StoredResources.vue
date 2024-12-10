@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-for="resource in resources" :key="resource.id">
-      <ResourceCard
+      <LearningResource
         :title="resource.title"
         :description="resource.description"
         :link="resource.link"
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import ResourceCard from '@/components/learning-resources/ResourceCard.vue';
+import LearningResource from '@/components/learning-resources/LearningResource.vue';
 
 export default {
   components: {
-    ResourceCard,
+    LearningResource,
   },
 
   props: {

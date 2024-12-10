@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <BaseCard>
     <header>
       <h2>{{ title }}</h2>
       <button>Delete</button>
@@ -8,7 +8,7 @@
     <nav>
       <a :href="link" target="_blank">View Resource</a>
     </nav>
-  </div>
+  </BaseCard>
 </template>
 
 <script>
