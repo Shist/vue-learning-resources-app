@@ -4,6 +4,8 @@
   </div>
 </template>
 
+<script></script>
+
 <style scoped>
 div {
   border-radius: 12px;
