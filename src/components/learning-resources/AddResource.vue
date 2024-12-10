@@ -23,6 +23,18 @@
       </div>
     </form>
   </BaseCard>
+  <BaseDialog v-show="!isInputValid" :title="dialogTitle" @close="confirmError">
+    <template #default>
+      <p>{{ dialogMessage }}</p>
+      <p>
+        Please check specified field and make sure you enter at least a few
+        characters into it.
+      </p>
+    </template>
+    <template #actions>
+      <BaseButton @click="confirmError">OK</BaseButton>
+    </template>
+  </BaseDialog>
 </template>
 
 <script>
@@ -34,11 +46,49 @@ export default {
       title: '',
       description: '',
       link: '',
+      isInputValid: true,
+      invalidField: null,
+      dialogMessage: '',
     };
   },
 
+  computed: {
+    dialogTitle() {
+      return `Invalid ${this.invalidField}!`;
+    },
+  },
+
   methods: {
+    validateFields() {
+      if (!this.title.trim()) {
+        this.invalidField = 'title';
+        return false;
+      }
+
+      if (!this.description.trim()) {
+        this.invalidField = 'description';
+        return false;
+      }
+
+      if (!this.link.trim()) {
+        this.invalidField = 'link';
+        return false;
+      }
+
+      return true;
+    },
+
     submitData() {
+      this.isInputValid = this.validateFields();
+
+      if (!this.isInputValid) {
+        this.dialogMessage = `Please, enter a valid value for ${this.invalidField}!`;
+        return;
+      } else {
+        this.invalidField = null;
+        this.dialogMessage = '';
+      }
+
       this.addResource({
         title: this.title,
         description: this.description,
@@ -48,6 +98,10 @@ export default {
       this.title = '';
       this.description = '';
       this.link = '';
+    },
+
+    confirmError() {
+      this.isInputValid = true;
     },
   },
 };
